@@ -403,8 +403,10 @@ case "${TOOL}" in
         unset GIT_DIR
         cd "${src}"
 
-        step "Fetching any unsaved dependencies (glide install)"
-        glide install 2>&1
+        if [ -n "${GO_SKIP_FETCH_PACKAGES}" ]; then
+            step "Fetching any unsaved dependencies (glide install)"
+            glide install 2>&1
+        fi
 
         massagePkgSpecForVendor
 

@@ -535,6 +535,9 @@ case "${TOOL}" in
             bin/go-pre-compile
         fi
 
+        eval "$(setupGOPATH ${name})"
+        cd "${src}"
+
         installPkgs
 
         if [[ -f bin/go-post-compile ]]; then
@@ -725,4 +728,3 @@ echo "TOOL=${TOOL}" > "${t}"
 if [ "${TOOL}" != "gb" ]; then
     echo "NAME=${name}" >> "${t}"
 fi
-

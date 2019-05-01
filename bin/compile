@@ -535,8 +535,11 @@ case "${TOOL}" in
             bin/go-pre-compile
         fi
 
-        eval "$(setupGOPATH ${name})"
-        cd "${src}"
+        if [ "${GO_SETUP_GOPATH_WITH_MODULES}" = "true" ]; then
+            step "Setting GOPATH with go modules :("
+            eval "$(setupGOPATH ${name})"
+            cd "${src}"
+        fi
 
         installPkgs
 
